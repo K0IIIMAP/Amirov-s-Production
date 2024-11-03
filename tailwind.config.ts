@@ -55,9 +55,11 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       screens: {
-        "custom-lg": "1200px",
+        "custom-xl": "1400px",
+        "custom-xmd": "1150px",
+
         "custom-md": "980px",
-        "custom-sm": "640px",
+        "custom-xsm": "450px",
       },
     },
   },
