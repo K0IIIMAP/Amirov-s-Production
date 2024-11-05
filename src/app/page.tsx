@@ -17,7 +17,6 @@ export default function Home() {
       <section id="new-collection" className="h-[100vh] flex flex-col">
         <NewColIntro />
         <NewColGrid />
-        <Footer />
       </section>
     </div>
   );

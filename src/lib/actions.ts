@@ -1,6 +1,6 @@
 "use server";
 
-import { auth } from "@/auth";
+import { auth, signOut } from "@/auth";
 import { client } from "@/sanity/lib/client";
 import { writeClient } from "@/sanity/lib/write-client";
 import { CART_BY_ID } from "@/sanity/query";
@@ -49,7 +49,6 @@ export const addToCart = async (prevState, slug: string) => {
 };
 
 export const deleteFromCart = async (prevState, slug: string) => {
-  console.log(slug);
   const session = await auth();
   if (!session?.user) redirect("/");
   const id = session.user.id;
@@ -71,4 +70,9 @@ export const deleteFromCart = async (prevState, slug: string) => {
   ]);
   console.log("Product successfully deleted from cart");
   revalidatePath("/cart");
+  return "Deleted";
+};
+
+export const signUserOut = async () => {
+  await signOut({ callbackUrl: "/" });
 };

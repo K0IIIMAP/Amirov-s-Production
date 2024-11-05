@@ -11,14 +11,12 @@ import { PRODUCT_BY_SLUG } from "@/sanity/query";
 import { client } from "@/sanity/client";
 
 import AddToCartBtn from "@/components/add-to-cart-btn";
-import { auth } from "@/auth";
+
 export default async function ProductPage({
   params,
 }: {
   params: { slug: Promise<string> };
 }) {
-  const session = await auth();
-
   const slug = await params?.slug;
   const product = await client.fetch(PRODUCT_BY_SLUG, { slug });
   const { title, price, description, sex, discount } = product;

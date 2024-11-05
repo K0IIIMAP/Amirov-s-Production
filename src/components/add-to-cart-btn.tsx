@@ -1,14 +1,21 @@
 "use client";
-import React, { useActionState } from "react";
+import React, { useActionState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 
 import { addToCart } from "@/lib/actions";
+import { useIndicator } from "@/app/contexts/indicator-context-provider";
 
 export default function AddToCartBtn({ slug }: { slug: string }) {
   const session = useSession();
-
+  const { indicator, setIndicator } = useIndicator();
   const id = session?.user?.id;
   const [response, formAction, isPending] = useActionState(addToCart, null);
+
+  useEffect(() => {
+    if (response === "Product successfully added to cart") {
+      setIndicator((prev) => prev + 1);
+    }
+  }, [response]);
 
   return (
     <form

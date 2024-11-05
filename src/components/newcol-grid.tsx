@@ -8,28 +8,39 @@ import {
 } from "@/sanity/query";
 import Image from "next/image";
 import Link from "next/link";
+import { config } from "process";
 
 import React from "react";
 
 export default async function NewColGrid({
   variant = "mainPage",
 }: {
-  variant: string;
+  variant?: string;
 }) {
   let products = [];
-  if (variant === "mainPage") products = await client.fetch(mainPageProds);
+  if (variant === "mainPage")
+    products = await client.fetch(mainPageProds, {
+      useCdn: true,
+    });
   if (variant === "apparelPage")
-    products = await client.fetch(APPAEREL_PAGE_PRODS);
+    products = await client.fetch(APPAEREL_PAGE_PRODS, {
+      useCdn: true,
+    });
   if (variant === "accessoriesPage") {
-    products = await client.fetch(ACCESSORIES_PAGE_PRODS);
+    products = await client.fetch(ACCESSORIES_PAGE_PRODS, {
+      useCdn: true,
+    });
   }
   if (variant === "menPage") products = await client.fetch(MEN_PAGE_PRODS);
   if (variant === "womenPage") products = await client.fetch(WOMEN_PAGE_PRODS);
 
   return (
-    <section className="grid max-sm:grid-cols-2 sm:grid-cols-2 custom-md:grid-cols-3 xl:grid-cols-4   gap-y-10 lg:gap-y-[100px] mt-6 place-items-center custom-xsm:px-[10%] sm:px-[5%] xl:px-0   text-[12px] lg:text-[16px]  mb-14">
+    <section className="grid max-sm:grid-cols-2 sm:grid-cols-2 custom-md:grid-cols-3 xl:grid-cols-4   gap-y-10 lg:gap-y-[100px] mt-6 place-items-center custom-xsm:px-[10%] sm:px-[5%] xl:px-0   text-[12px] lg:text-[16px] mb-[50px] ">
       {products.map((prod) => (
-        <div key={prod.title}>
+        <div
+          key={prod.title}
+          className="hover:scale-105 transition duration-300"
+        >
           <Link href={`/product/${prod.slug}`}>
             <Image
               src={prod.images.asset.url}

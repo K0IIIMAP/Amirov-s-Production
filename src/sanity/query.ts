@@ -55,7 +55,7 @@ export const ACCESSORIES_PAGE_PRODS = groq`
 `;
 
 export const MEN_PAGE_PRODS = groq`
- *[_type == "product" && sex->title == "men"]{
+ *[_type == "product" && sex->title == "men" && type != "accessories"]{
   title,
   price,
   "sex": sex->title,

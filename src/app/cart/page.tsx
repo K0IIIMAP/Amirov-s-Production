@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import CheckoutBtn from "@/components/checkout-btn";
 import DeleteBtn from "@/components/delete-btn";
 import { client } from "@/sanity/lib/client";
 import { CART_BY_ID, PRODUCT_BY_SLUG_FOR_CART } from "@/sanity/query";
@@ -16,6 +17,7 @@ export default async function CartPage() {
   const id = session.user.id;
   // console.log(id);
   const cart = await client.fetch(CART_BY_ID, { id });
+
   const slugs = cart.cart;
 
   const products = await Promise.all(
@@ -23,6 +25,7 @@ export default async function CartPage() {
   );
 
   const flattenedProducts = products.flat() || [];
+
   // we can have a discount. count the discount too
 
   const unformattedTotal = flattenedProducts.reduce((acc, curr) => {
@@ -140,9 +143,11 @@ export default async function CartPage() {
                   <p>Sales Taxes: $0</p>
                   <p>Delivery: $0</p>
                 </div>
-                <button className="w-[250px] h-[40px] bg-black hover:bg-black/60 text-accent max-md:text-[14px] text-[20px]">
-                  Check Out
-                </button>
+                <CheckoutBtn
+                  flattenedProducts={flattenedProducts}
+                  id={id}
+                  total={total}
+                />
               </div>
             ) : (
               " "

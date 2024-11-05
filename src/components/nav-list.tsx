@@ -1,4 +1,5 @@
 "use client";
+
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -9,7 +10,6 @@ const allRoutes = [
 ];
 
 const mobileRoutes = [{ label: "Apparel", path: "/apparel/all" }];
-
 export default function NavList() {
   const [routes, setRoutes] = useState(allRoutes);
   const currentPath = usePathname();
