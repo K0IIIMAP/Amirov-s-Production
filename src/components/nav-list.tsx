@@ -5,11 +5,10 @@ import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 const allRoutes = [
   { label: "Apparel", path: "/apparel/all" },
-  { label: "Men", path: "apparel/men" },
-  { label: "Women", path: "apparel/women" },
+  { label: "Accessories", path: "/apparel/accessories" },
 ];
-// !TODO fix the routes apparel/apparel
-const mobileRoutes = [{ label: "Apparel", path: "/apparel" }];
+
+const mobileRoutes = [{ label: "Apparel", path: "/apparel/all" }];
 
 export default function NavList() {
   const [routes, setRoutes] = useState(allRoutes);

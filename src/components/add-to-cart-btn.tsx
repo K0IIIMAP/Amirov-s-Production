@@ -1,7 +1,7 @@
 "use client";
-import React, { useActionState, useEffect } from "react";
+import React, { useActionState } from "react";
 import { useSession } from "next-auth/react";
-import { toast } from "sonner";
+
 import { addToCart } from "@/lib/actions";
 
 export default function AddToCartBtn({ slug }: { slug: string }) {

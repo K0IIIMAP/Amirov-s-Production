@@ -47,7 +47,7 @@ export default async function NewColGrid({
               </div>
               <div className="flex justify-between mt-1">
                 <p>{prod.sex}</p>
-                <button className="bg-accent w-[60px] h-[25px]">BUY</button>
+                <button className="bg-accent w-[60px] h-[25px]   ">BUY</button>
               </div>
             </div>
           </Link>

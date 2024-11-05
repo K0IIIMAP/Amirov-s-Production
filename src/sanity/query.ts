@@ -22,7 +22,7 @@ export const mainPageProds = groq`
 }
 `;
 export const APPAEREL_PAGE_PRODS = groq`
- *[_type == "product" && type=="apparel"]{
+ *[_type == "product" && type != "accessories"]{
   title,
   price,
   "sex": sex->title,

@@ -25,9 +25,11 @@ export default async function CartPage() {
   const flattenedProducts = products.flat() || [];
   // we can have a discount. count the discount too
 
-  const total = flattenedProducts.reduce((acc, curr) => {
+  const unformattedTotal = flattenedProducts.reduce((acc, curr) => {
     return acc + curr.price - (curr.price * (curr.discount || 0)) / 100;
   }, 0);
+  const total = parseFloat(unformattedTotal.toFixed(2));
+
   // console.log(flattenedProducts);
   return (
     <>
