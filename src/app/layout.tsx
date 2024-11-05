@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import Header from "@/components/header";
+import { SessionProvider } from "next-auth/react";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Ecommerce",
@@ -14,12 +16,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={` antialiased relative overflow-x-hidden `}>
-        <div className=" max-w-[1200px] m-auto">
-          <Header />
-          {children}
-        </div>
+    <html lang="en" className="overflow-x-hidden">
+      <body
+        className={` antialiased relative overflow-x-hidden
+        `}
+      >
+        <SessionProvider>
+          <div className=" max-w-[1200px] m-auto">
+            <Header />
+            {children}
+            <Toaster />
+          </div>
+        </SessionProvider>
       </body>
     </html>
   );

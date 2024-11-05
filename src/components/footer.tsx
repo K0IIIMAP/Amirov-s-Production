@@ -1,3 +1,4 @@
+import { PhoneOutgoing } from "lucide-react";
 import React from "react";
 
 export default function Footer() {
@@ -8,9 +9,9 @@ export default function Footer() {
         href="https://wa.me/380965360759"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-blue-700 hover:text-blue-500 transition"
+        className="flex items-center"
       >
-        Connect with Me
+        Connect with Me <PhoneOutgoing className="size-4 ml-1" />
       </a>
     </footer>
   );

@@ -17,7 +17,7 @@ export default function DesignItems() {
         width={200}
         height={150}
         alt="ellipse"
-        className="absolute top-0 left-0 -z-10 max-xl:left-[-70px] max-sm:left-[-105px]"
+        className="absolute top-0 left-0 -z-10 max-xl:left-[-70px] max-md:left-[-105px]"
       ></Image>
       <Image
         src="/main ellipse.png"

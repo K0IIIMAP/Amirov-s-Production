@@ -9,6 +9,22 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        smoothBounce: {
+          "0%, 100%": {
+            transform: "translateY(0)",
+            "animation-timing-function": "ease-in-out",
+          },
+          "50%": {
+            transform: "translateY(-10px)",
+            "animation-timing-function": "ease-in-out",
+          },
+        },
+      },
+      animation: {
+        smoothBounce: "smoothBounce 1.8s infinite",
+      },
+
       colors: {
         accent: "#FFA81C",
         background: "hsl(var(--background))",

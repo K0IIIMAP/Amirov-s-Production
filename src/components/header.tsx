@@ -1,10 +1,23 @@
-import { signIn } from "@/auth";
+import { auth, signIn, signOut } from "@/auth";
 
 import React from "react";
 import NavList from "./nav-list";
 import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { CircleUserRound } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
-export default function Header() {
+export default async function Header() {
+  const session = await auth();
+
+  const avatar = session?.user?.image;
   return (
     <header className="h-[67px] w-full flex justify-between items-center px-[3%] text-[14px] md:text-base">
       <Link href="/" className="cursor-pointer">
@@ -24,19 +37,58 @@ export default function Header() {
           />
         </svg>
       </Link>
-      <nav className="flex">
+      <nav className="flex h-full items-center">
         <NavList />
-        <form
-          className="ml-5"
-          action={async () => {
-            "use server";
-            await signIn("google");
-          }}
-        >
-          <button type="submit" className="hover:text-accent">
-            Log In
-          </button>
-        </form>
+        {session?.user ? (
+          <DropdownMenu modal={false}>
+            <DropdownMenuTrigger asChild>
+              <button className="cursor-pointer ml-5    ">
+                <Avatar>
+                  <AvatarImage src={avatar} />
+                  <AvatarFallback>
+                    {" "}
+                    <CircleUserRound />
+                  </AvatarFallback>
+                </Avatar>
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="bg-[#e4e4e4]">
+              <Link href="/cart">
+                <DropdownMenuItem className="cursor-pointer">
+                  Cart
+                </DropdownMenuItem>
+              </Link>
+              <DropdownMenuItem className="cursor-pointer">
+                Purchased
+              </DropdownMenuItem>
+
+              <DropdownMenuSeparator className="bg-slate-400 " />
+
+              <DropdownMenuLabel className="text-center text-red-500 cursor-pointer text-[14px] font-normal ">
+                <form
+                  action={async () => {
+                    "use server";
+                    await signOut();
+                  }}
+                >
+                  <button type="submit"> Sign Out</button>
+                </form>
+              </DropdownMenuLabel>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        ) : (
+          <form
+            className="ml-5"
+            action={async () => {
+              "use server";
+              await signIn("google");
+            }}
+          >
+            <button type="submit" className="hover:text-accent">
+              Log In
+            </button>
+          </form>
+        )}
       </nav>
     </header>
   );
