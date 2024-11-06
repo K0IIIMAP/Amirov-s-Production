@@ -5,6 +5,7 @@ import Header from "@/components/header";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "@/components/ui/sonner";
 import { IndicatorProvider } from "./contexts/indicator-context-provider";
+import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "Ecommerce",
@@ -28,7 +29,9 @@ export default async function RootLayout({
               <Header />
 
               {children}
+              <Footer />
             </div>
+
             <Toaster />
           </SessionProvider>
         </IndicatorProvider>

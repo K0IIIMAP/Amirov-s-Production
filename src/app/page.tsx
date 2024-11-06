@@ -14,7 +14,7 @@ export default function Home() {
       <HeroSection />
 
       {/** NEW COLLECTION SECTOn */}
-      <section id="new-collection" className="h-[100vh] flex flex-col">
+      <section id="new-collection" className=" flex flex-col">
         <NewColIntro />
         <NewColGrid />
       </section>

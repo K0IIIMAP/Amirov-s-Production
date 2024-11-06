@@ -51,7 +51,7 @@ export default async function ProductPage({
               <CarouselContent>
                 {product.images.map((asset) => (
                   <CarouselItem key={asset.asset.url}>
-                    <div className="flex-1 hover:scale-[1.15] transition duration-300 ">
+                    <div className="flex-1  transition duration-300 ">
                       <Image
                         width={375}
                         height={500}
@@ -63,8 +63,8 @@ export default async function ProductPage({
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="left-0 top-[50%] translate-y-[-50%] hover:bg-white/30 disabled:hidden" />
-              <CarouselNext className="right-0 top-[50%] translate-y-[-50%] hover:bg-white/30 disabled:hidden" />
+              <CarouselPrevious className="left-0 top-[50%] translate-y-[-50%] hover:bg-white/30 disabled:hidden opacity-20" />
+              <CarouselNext className="right-0 top-[50%] translate-y-[-50%] hover:bg-white/30 disabled:hidden opacity-20" />
             </Carousel>
           </section>
 

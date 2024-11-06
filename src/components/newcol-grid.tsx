@@ -8,7 +8,6 @@ import {
 } from "@/sanity/query";
 import Image from "next/image";
 import Link from "next/link";
-import { config } from "process";
 
 import React from "react";
 
@@ -35,7 +34,7 @@ export default async function NewColGrid({
   if (variant === "womenPage") products = await client.fetch(WOMEN_PAGE_PRODS);
 
   return (
-    <section className="grid max-sm:grid-cols-2 sm:grid-cols-2 custom-md:grid-cols-3 xl:grid-cols-4   gap-y-10 lg:gap-y-[100px] mt-6 place-items-center custom-xsm:px-[10%] sm:px-[5%] xl:px-0   text-[12px] lg:text-[16px] mb-[50px] ">
+    <section className="grid max-sm:grid-cols-2 sm:grid-cols-2 custom-md:grid-cols-3 xl:grid-cols-4   gap-y-10 lg:gap-y-[100px] mt-6 place-items-center custom-xsm:px-[10%] sm:px-[5%] xl:px-0   text-[12px] lg:text-[16px] mb-[200px] ">
       {products.map((prod) => (
         <div
           key={prod.title}

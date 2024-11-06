@@ -1,4 +1,5 @@
 import FilterDrop from "@/components/filter-drop";
+import Footer from "@/components/footer";
 import NewColGrid from "@/components/newcol-grid";
 import Image from "next/image";
 
