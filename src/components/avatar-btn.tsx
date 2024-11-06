@@ -45,9 +45,11 @@ export default function AvatarBtn({ avatar }: { avatar: string }) {
             ""
           )}
         </Link>
-        <DropdownMenuItem className="cursor-pointer">
-          Purchased
-        </DropdownMenuItem>
+        <Link href="/history">
+          <DropdownMenuItem className="cursor-pointer">
+            History
+          </DropdownMenuItem>
+        </Link>
 
         <DropdownMenuSeparator className="bg-slate-400 " />
 

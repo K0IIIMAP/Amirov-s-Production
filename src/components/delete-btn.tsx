@@ -12,11 +12,11 @@ export default function DeleteBtn({ slug }: { slug: string }) {
     null
   );
   const { indicator, setIndicator } = useIndicator();
-
+  useEffect(() => {
+    // set indicator to 0 on mount
+    setIndicator(0);
+  }, []);
   const handleDelete = async () => {
-    // Immediately set the indicator to 0 before the deletion process starts
-
-    setIndicator((prev) => prev - 1);
     formAction(slug);
   };
 

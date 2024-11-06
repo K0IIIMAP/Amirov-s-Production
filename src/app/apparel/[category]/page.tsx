@@ -9,10 +9,10 @@ export default async function ApparelPage({
 }: {
   params: { category: Promise<string> };
 }) {
-  const slug = await params.category;
-  console.log(slug);
-  const apparelSlug = (await params.category) !== "accessories";
+  const slug = await params?.category;
 
+  const apparelSlug = slug !== "accessories";
+  console.log("apparelSlug", apparelSlug);
   return (
     <>
       <Image

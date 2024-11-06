@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 
+import { toast } from "sonner";
+
 export default function CheckoutBtn({
   flattenedProducts,
-  total,
+
   id,
 }: {
   products: [];
@@ -12,11 +14,11 @@ export default function CheckoutBtn({
   id: string;
 }) {
   const [isLoading, setIsLoading] = useState(false);
-
+  console.log(flattenedProducts);
   async function checkout() {
     try {
       // sending the cart items to the checkout endpoint
-      // setIsLoading(true);
+      setIsLoading(true);
       console.log(flattenedProducts);
       const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
       const response = await fetch(`${baseUrl}/api/checkout`, {
@@ -26,27 +28,39 @@ export default function CheckoutBtn({
         },
         body: JSON.stringify({
           flattenedProducts,
+          id,
         }),
       });
       if (!response.ok) {
         // Handle errors based on status
         const errorData = await response.json();
-        console.error("Error:", errorData.error);
+        setIsLoading(false);
+
+        throw new Error(
+          `Checkout failed: ${errorData.error || "Unknown error"}`
+        );
       } else {
         const data = await response.json();
+
         window.location.href = data.url; // Use this URL to redirect the user to Stripe
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong, try again later!", {
+        style: { backgroundColor: "red", border: "none", color: "white" },
+      });
+    }
   }
   return (
-    <>
-      {/* {isLoading && <div className="spinner"></div>} */}
+    <div className="flex gap-x-2 items-center">
+      {isLoading && <div className="spinner"></div>}
       <button
         onClick={checkout}
-        className="w-[250px] h-[40px] bg-black hover:bg-black/60 text-accent max-md:text-[14px] text-[20px]"
+        disabled={isLoading}
+        className="disabled:bg-black/30 w-[250px] h-[40px] bg-black hover:bg-black/60 text-accent max-md:text-[14px] text-[20px]"
       >
-        Check Out
+        {isLoading ? "Processing..." : `Checkout`}
       </button>
-    </>
+    </div>
   );
 }

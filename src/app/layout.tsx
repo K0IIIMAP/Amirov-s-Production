@@ -5,10 +5,6 @@ import Header from "@/components/header";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "@/components/ui/sonner";
 import { IndicatorProvider } from "./contexts/indicator-context-provider";
-import { CART_BY_ID } from "@/sanity/query";
-import { client } from "@/sanity/lib/client";
-import { auth } from "@/auth";
-import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "Ecommerce",
@@ -20,21 +16,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await auth();
-
-  const id = session?.user?.id;
-  let cartLength = null;
-  if (id) {
-    cartLength = (await client.fetch(CART_BY_ID, { id })).cart.length;
-  }
-
   return (
     <html lang="en" className="overflow-x-hidden">
       <body
         className={` antialiased relative overflow-x-hidden 
         `}
       >
-        <IndicatorProvider cartLength={cartLength}>
+        <IndicatorProvider>
           <SessionProvider>
             <div className=" max-w-[1200px] m-auto  ">
               <Header />

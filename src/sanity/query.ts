@@ -115,6 +115,9 @@ export const CART_BY_ID = groq`
  *[_type == "customer" && googleId == $id][0] {cart}
 `;
 
+export const HISTORY_BY_ID = groq`
+  *[_type == "customer" && googleId == $id][0] {history}
+  `;
 export const CUSTOMER_BY_GOOGLEID = groq`
  *[_type == "customer" && googleId == $id][0] {
  name}

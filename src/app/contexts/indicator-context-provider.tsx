@@ -22,14 +22,8 @@ export const useIndicator = () => {
 };
 
 // Create the provider component
-export const IndicatorProvider = ({
-  children,
-  cartLength,
-}: {
-  children: ReactNode;
-  cartLength: number;
-}) => {
-  const [indicator, setIndicator] = useState<number>(cartLength);
+export const IndicatorProvider = ({ children }: { children: ReactNode }) => {
+  const [indicator, setIndicator] = useState<number>(0);
 
   return (
     <IndicatorContext.Provider value={{ indicator, setIndicator }}>
