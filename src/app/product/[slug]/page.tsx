@@ -31,7 +31,7 @@ export default async function ProductPage({
         className="absolute top-[50px]  right-[-240px] -z-10 select-none"
       ></Image>
 
-      <main className="flex w-full  ">
+      <main className="flex w-full  mb-32 ">
         <div className="flex w-full mt-10 md:mt-20 flex-col lg:flex-row ">
           <section className=" lg:basis-[550px]  h-full  flex  flex-col lg:flex-row lg:justify-normal items-center ">
             <div className="basis-[170px] h-full  flex flex-row lg:flex-col items-center gap-y-4 order-1 lg:order-[0] max-lg:mt-[20px]  gap-x-10 lg:gap-x-0 px-[5%] lg:px-0 max-custom-xsm:hidden ">
